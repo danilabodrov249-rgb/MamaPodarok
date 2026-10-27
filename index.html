@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>С Днём Рождения, любимая Мамочка! ❤️ 39 лет</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -24,6 +24,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* Убирает синюю рамку на телефонах */
         }
 
         body {
@@ -35,7 +36,11 @@
             scroll-behavior: smooth;
         }
 
-        /* Анимированные неоновые сферы на фоне */
+        /* Блокируем прокрутку, пока открыт экран подарка */
+        body.locked {
+            overflow: hidden;
+        }
+
         .ambient-bg {
             position: fixed;
             inset: 0;
@@ -50,6 +55,7 @@
             filter: blur(90px);
             opacity: 0.45;
             animation: floatOrb 18s infinite alternate ease-in-out;
+            will-change: transform;
         }
 
         .orb-1 {
@@ -88,7 +94,6 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        /* Полоса прогресса прокрутки сверху */
         .progress-bar {
             position: fixed;
             top: 0;
@@ -147,6 +152,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
+            padding: 0 10px;
         }
 
         #gift-overlay p {
@@ -155,6 +161,7 @@
             margin-bottom: 40px;
             max-width: 500px;
             line-height: 1.6;
+            padding: 0 10px;
         }
 
         .open-gift-btn {
@@ -186,7 +193,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Падающие лепестки и золотые искры */
+        /* Падающие лепестки */
         .petals-container {
             position: fixed;
             inset: 0;
@@ -200,6 +207,7 @@
             top: -10%;
             animation: fall linear infinite;
             filter: drop-shadow(0 0 8px rgba(255, 207, 103, 0.6));
+            will-change: transform;
         }
 
         @keyframes fall {
@@ -208,9 +216,11 @@
             100% { transform: translateY(110vh) rotate(360deg) translateX(-30px); opacity: 0; }
         }
 
-        /* ГЛАВНЫЙ ЭКРАН (HERO) */
+        /* ГЛАВНЫЙ ЭКРАН (HERO) — ИСПРАВЛЕНО ДЛЯ МОБИЛЬНЫХ */
         .hero {
+            /* Используем svh, чтобы адресная строка не ломала высоту */
             min-height: 100vh;
+            min-height: 100svh; 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -222,6 +232,7 @@
 
         .date-badge {
             background: rgba(255, 207, 103, 0.12);
+            -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             border: 1px solid var(--gold);
             padding: 12px 35px;
@@ -265,6 +276,7 @@
             margin-bottom: 40px;
             box-shadow: 0 0 60px rgba(255, 77, 121, 0.35);
             animation: floatCard 4s ease-in-out infinite;
+            will-change: transform;
         }
 
         @keyframes floatCard {
@@ -285,6 +297,7 @@
             text-transform: uppercase;
             font-weight: 600;
             animation: bounce 2s infinite;
+            will-change: transform;
         }
 
         @keyframes bounce {
@@ -299,8 +312,8 @@
             margin: 110px auto;
             padding: 45px;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%);
-            backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(18px);
             border-radius: 36px;
             border: 1px solid var(--glass-border);
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
@@ -472,6 +485,7 @@
 
         .stat-card {
             background: rgba(15, 6, 12, 0.65);
+            -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 207, 103, 0.4);
             padding: 35px 40px;
@@ -499,7 +513,7 @@
             line-height: 1;
         }
 
-        /* ФИНАЛЬНЫЙ БЛОК С ФОТО МАМЫ */
+        /* ФИНАЛЬНЫЙ БЛОК */
         .final-wrapper {
             padding: 40px 20px 110px;
         }
@@ -530,6 +544,7 @@
             display: inline-block;
             filter: drop-shadow(0 0 20px var(--gold));
             animation: floatCard 3s ease-in-out infinite;
+            will-change: transform;
         }
 
         .mom-photo-container {
@@ -544,6 +559,7 @@
             animation: floatCard 4s ease-in-out infinite, gradientMove 5s ease infinite;
             box-shadow: 0 20px 60px rgba(255, 77, 121, 0.55), 0 0 40px rgba(255, 207, 103, 0.5);
             cursor: pointer;
+            will-change: transform;
         }
 
         .mom-photo-container img {
@@ -565,6 +581,7 @@
             border-radius: 20px;
             font-size: 0.8rem;
             white-space: nowrap;
+            -webkit-backdrop-filter: blur(5px);
             backdrop-filter: blur(5px);
             border: 1px solid var(--gold);
         }
@@ -607,6 +624,7 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            will-change: transform;
         }
 
         .celebrate-btn:hover {
@@ -637,6 +655,7 @@
             background: rgba(9, 2, 6, 0.8);
         }
 
+        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
         @media (max-width: 850px) {
             .hero h1 { font-size: 3.2rem; }
             .section, .section:nth-child(even) {
@@ -656,10 +675,12 @@
             .final-section h2 { font-size: 2.6rem; }
             .mom-photo-container { width: 270px; height: 350px; }
             .final-message { padding: 20px; font-size: 1.1rem; }
+            #gift-overlay h2 { font-size: 2.6rem; }
+            .open-gift-btn { padding: 15px 30px; font-size: 1.1rem; }
         }
     </style>
 </head>
-<body>
+<body class="locked">
 
     <!-- Полоса прогресса сверху -->
     <div class="progress-bar" id="progressBar"></div>
@@ -834,10 +855,12 @@
         Сделано с огромной любовью специально для Мамы ❤️ 27.10.2026
     </footer>
 
-    <!-- Подключаем библиотеку салюта -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        // Фото мамы: загрузка и сохранение
+        // Блокировка скролла до открытия подарка
+        document.body.classList.add('locked');
+
+        // Фото мамы
         const momPhoto = document.getElementById('momPhoto');
         const photoInput = document.getElementById('photoInput');
 
@@ -875,6 +898,7 @@
         function openGift() {
             const overlay = document.getElementById('gift-overlay');
             if (overlay) overlay.classList.add('hidden');
+            document.body.classList.remove('locked'); // Разблокируем скролл
             bigFireworks();
         }
 
